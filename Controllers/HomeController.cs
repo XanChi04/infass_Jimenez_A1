@@ -17,13 +17,27 @@ namespace infass_Jimenez_A1.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Login(string email, string password)
+        {
+            return Content($"Email: {email}\nPassword: {password}");
+        }
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(string email, string password, string confirmPassword)
+        {
+            return Content($"Email: {email}\nPassword: {password}\nConfirm Password: {confirmPassword}");
         }
         public IActionResult Privacy()
         {
