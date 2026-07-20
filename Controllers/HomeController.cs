@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using infass_Jimenez_A1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace infass_Jimenez_A1.Controllers
 {
@@ -12,6 +13,11 @@ namespace infass_Jimenez_A1.Controllers
         {
             _logger = logger;
         }
+
+        //temp data paras user
+
+        private static List<User> registeredUser = new List<User>();
+
 
         public IActionResult Index()
         {
@@ -26,8 +32,17 @@ namespace infass_Jimenez_A1.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            return Content($"Email: {email}\nPassword: {password}");
+           User? user = registeredUser.FirstOrDefault(u => u.Email == email && u.Password == password);
+
+            if (user != null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            return View();
         }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -37,7 +52,22 @@ namespace infass_Jimenez_A1.Controllers
         [HttpPost]
         public IActionResult Register(string email, string password, string confirmPassword)
         {
+           if(password != confirmPassword)
+            {
+                ModelState.AddModelError(string.Empty, "Passwords do not match.");
+                return View();
+            }
+
+           registeredUser.Add(
+               new User 
+               { 
+                   Email = email, 
+                   Password = password 
+               }
+           );
+
             return Content($"Email: {email}\nPassword: {password}\nConfirm Password: {confirmPassword}");
+
         }
         public IActionResult Privacy()
         {

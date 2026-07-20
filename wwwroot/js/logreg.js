@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+   
     $(document).on('click', '#btnRegister', function (e) {
         e.preventDefault();
         $.ajax({
@@ -12,6 +12,8 @@
             },
             success: function (response) {
                 alert(response);
+
+                window.location.href = "/Home/Login";
             }
         })
     })

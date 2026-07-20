@@ -6,11 +6,13 @@ namespace infass_Jimenez_A1.Models
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int UserId { get; set; } 
         [Required]
-        public int Email {  get; set; }
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; } = string.Empty;
 
         [Required]
-        public string Password { get; set; }
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = string.Empty;
     }
 }
