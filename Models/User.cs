@@ -8,11 +8,11 @@ namespace infass_Jimenez_A1.Models
         [Key]
         public int UserId { get; set; } 
         [Required]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; } = string.Empty;
 
         [Required]
-        [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
+
+        public int Age { get; set; }
     }
 }

@@ -7,13 +7,13 @@
             type: "POST",
             data: {
                 email: $('#email').val(),
+                age: $('#age').val(),
                 password: $('#password').val(),
                 confirmPassword: $('#confirmPassword').val()
             },
             success: function (response) {
                 alert(response);
 
-                window.location.href = "/Home/Login";
             }
         })
     })

@@ -50,24 +50,25 @@ namespace infass_Jimenez_A1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(string email, string password, string confirmPassword)
+        public IActionResult Register(User user, string confirmPassword)
         {
-           if(password != confirmPassword)
+            Create create = new Create();
+
+            string sql = create.Insert(
+                "User",
+                new string[] { "Email", "Age", "Password" },
+                new object[]
+                {
+                    user.Email,
+                    user.Age,
+                    user.Password
+                });
+
+            if (user.Password != confirmPassword)
             {
-                ModelState.AddModelError(string.Empty, "Passwords do not match.");
-                return View();
+                return Content("Password did not match!");
             }
-
-           registeredUser.Add(
-               new User 
-               { 
-                   Email = email, 
-                   Password = password 
-               }
-           );
-
-            return Content($"Email: {email}\nPassword: {password}\nConfirm Password: {confirmPassword}");
-
+            return Content(sql);
         }
         public IActionResult Privacy()
         {
