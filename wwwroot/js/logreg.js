@@ -1,5 +1,5 @@
 ﻿$(function () {
-   
+
     $(document).on('click', '#btnRegister', function (e) {
         e.preventDefault();
         $.ajax({
@@ -14,7 +14,74 @@
             success: function (response) {
                 alert(response);
 
+                window.location.href = "/Home/Login";
             }
-        })
-    })
+        });
+    });
+
+    $(document).on('click', '#btnLogin', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/Home/Login",
+            type: "POST",
+            data: {
+                email: $("#email").val(),
+                password: $("#password").val()
+            },
+            success: function (response) {
+                alert(response.message);
+
+                if (response.success) {
+
+                    window.location.href = "/Home/Index";
+                    if ($("#dbLink").prop("hidden") === true) {
+                        $("#dbLink").prop("hidden") === false;
+                    }
+                }
+            }
+        });
+    });
 })
+
+
+
+    //access select option
+    //$("#showAll").change(function () {
+    //    let selected = $(this).val();
+
+    //    if (selected == "Users") {
+    //        loadUsers();
+    //    }
+    //})
+
+    //$(function loadUsers() {
+    //    $.ajax({
+    //        url: "/Home/GetUser",
+    //        type: "GET",
+    //        dataType: JSON.stringify,
+    //        success: function (users) {
+
+    //            var tbody = $("#userTable tbody");
+    //            tbody.empty();
+
+    //            $.each(users, function (i, user) {
+
+    //                tbody.append(`
+    //            <tr>
+    //                <td>${user.email}</td>
+    //                <td>${user.age}</td>
+    //                <td>
+    //                    <button class="btn btn-warning btn-sm">Edit</button>
+    //                    <button class="btn btn-danger btn-sm">Delete</button>
+    //                </td>
+    //            </tr>
+    //        `);
+
+    //            });
+
+    //        }
+    //    })
+    //})
+
+
+

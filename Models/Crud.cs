@@ -1,12 +1,12 @@
 ﻿namespace infass_Jimenez_A1.Models
 {
-    public class Create
+    public class Crud
     {
         public string Insert(string tblName, string[] fld, object[] val)
         {
             //INSERT INTO User (Name, Age, Gender) VALUES ('Hazzel', 21, 'Female');
 
-            string sql = $"INSERT INTO {tblName} (";
+            string sql = $"INSERT INTO {tblName} ("; 
 
             for (int i = 0; i < fld.Length; i++)
             {
@@ -38,6 +38,13 @@
 
             sql += ");";
 
+
+            return sql;
+        }
+
+        public string SelectAll(string tblName)
+        {
+            string sql = $"SELECT * FROM {tblName}";
 
             return sql;
         }

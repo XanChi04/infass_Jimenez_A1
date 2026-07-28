@@ -32,15 +32,23 @@ namespace infass_Jimenez_A1.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-           User? user = registeredUser.FirstOrDefault(u => u.Email == email && u.Password == password);
+            User? user = registeredUser
+                .FirstOrDefault(u => u.Email == email && u.Password == password);
 
             if (user != null)
             {
-                return RedirectToAction(nameof(Index));
+                return Json(new
+                {
+                    success = true,
+                    message = "Login Successfully!"
+                });
             }
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View();
+            return Json(new
+            {
+                success = false,
+                message = "Invalid email or password."
+            });
         }
 
         [HttpGet]
@@ -52,9 +60,9 @@ namespace infass_Jimenez_A1.Controllers
         [HttpPost]
         public IActionResult Register(User user, string confirmPassword)
         {
-            Create create = new Create();
+            Crud crud = new Crud();
 
-            string sql = create.Insert(
+            string sql = crud.Insert(
                 "User",
                 new string[] { "Email", "Age", "Password" },
                 new object[]
@@ -68,11 +76,34 @@ namespace infass_Jimenez_A1.Controllers
             {
                 return Content("Password did not match!");
             }
+
+            if (registeredUser.Any(u => u.Email == user.Email))
+            {
+                return Content("Email is already registered.");
+            }
+
+            registeredUser.Add(user);
+
             return Content(sql);
         }
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+        public IActionResult GetUser(User getUser)
+        {
+            var user = new List<User>
+           {
+               new User {UserId = getUser.UserId, Email = getUser.Email, Age = getUser.Age, Password = getUser.Password}
+           };
+
+            return Json(user);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
