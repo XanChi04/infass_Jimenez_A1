@@ -34,22 +34,60 @@
                 if (response.success) {
 
                     window.location.href = "/Home/Index";
-                    if ($("#dbLink").prop("hidden") === true) {
-                        $("#dbLink").prop("hidden") === false;
-                    }
+
+                    //if ($("#dbLink").prop("hidden") === true) {
+                    //    $("#dbLink").prop("hidden") === false;
+                    //}
                 }
+            }
         });
     });
+   
+    //access select option
+    $(document).on('click', '#dbLink', function (e) {
+        e.preventDefault();
+
+        $("#showAll").on("change", function () {
+            if ($(this).val() == "1") {
+                loadUsers();
+            }
+        });
+
+        $(function loadUsers() {
+            $.ajax({
+                url: "/Home/GetUser",
+                type: "GET",
+                data: {
+                    user: $("#showAll").val()
+                },
+                success: function (response) {
+                    alert(response);
+                }
+            })
+        })
+    })
+})
 
 
 
 
+//    var tbody = $("#userTable tbody");
+//    tbody.empty();
 
+//    $.each(users, function (i, user) {
 
+//        tbody.append(`
+//<tr>
+//    <td>${user.email}</td>
+//    <td>${user.age}</td>
+//    <td>
+//        <button class="btn btn-warning btn-sm">Edit</button>
+//        <button class="btn btn-danger btn-sm">Delete</button>
+//    </td>
+//</tr>
+//`);
 
-
-
-
+//        });
 
 
 

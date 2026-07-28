@@ -96,14 +96,13 @@ namespace infass_Jimenez_A1.Controllers
             return View();
         }
 
-        public IActionResult GetUser(User getUser)
+        public IActionResult GetUser()
         {
-            var user = new List<User>
-           {
-               new User {UserId = getUser.UserId, Email = getUser.Email, Age = getUser.Age, Password = getUser.Password}
-           };
+            Crud crud = new Crud();
 
-            return Json(user);
+            string sql = crud.SelectAll("User");
+
+            return Content(sql);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
