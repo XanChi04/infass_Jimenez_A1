@@ -43,9 +43,6 @@
         });
     });
    
-    //access select option
-    $(document).on('click', '#dbLink', function (e) {
-        e.preventDefault();
 
         $("#showAll").on("change", function () {
             if ($(this).val() == "1") {
@@ -57,16 +54,10 @@
             $.ajax({
                 url: "/Home/GetUser",
                 type: "GET",
-                data: {
-                    user: $("#showAll").val()
-                },
                 success: function (response) {
                     alert(response);
                 }
             })
-        })
-    })
-})
 
 
 
