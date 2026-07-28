@@ -43,21 +43,24 @@
         });
     });
    
+    $(document).on('click', '#btnUser', function () {
+            loadUsers();
+        
+    });
 
-        $("#showAll").on("change", function () {
-            if ($(this).val() == "1") {
-                loadUsers();
+    function loadUsers() {
+        $.ajax({
+            url: "/Home/GetUser",
+            type: "GET",
+            success: function (response) {
+                alert(response);
             }
         });
+    }
+})
+//access select option
 
-        $(function loadUsers() {
-            $.ajax({
-                url: "/Home/GetUser",
-                type: "GET",
-                success: function (response) {
-                    alert(response);
-                }
-            })
+
 
 
 
