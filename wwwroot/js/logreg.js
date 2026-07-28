@@ -38,50 +38,18 @@
                         $("#dbLink").prop("hidden") === false;
                     }
                 }
-            }
         });
     });
-})
 
 
 
-    //access select option
-    //$("#showAll").change(function () {
-    //    let selected = $(this).val();
 
-    //    if (selected == "Users") {
-    //        loadUsers();
-    //    }
-    //})
 
-    //$(function loadUsers() {
-    //    $.ajax({
-    //        url: "/Home/GetUser",
-    //        type: "GET",
-    //        dataType: JSON.stringify,
-    //        success: function (users) {
 
-    //            var tbody = $("#userTable tbody");
-    //            tbody.empty();
 
-    //            $.each(users, function (i, user) {
 
-    //                tbody.append(`
-    //            <tr>
-    //                <td>${user.email}</td>
-    //                <td>${user.age}</td>
-    //                <td>
-    //                    <button class="btn btn-warning btn-sm">Edit</button>
-    //                    <button class="btn btn-danger btn-sm">Delete</button>
-    //                </td>
-    //            </tr>
-    //        `);
 
-    //            });
 
-    //        }
-    //    })
-    //})
 
 
 
