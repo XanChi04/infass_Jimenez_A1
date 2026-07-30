@@ -50,13 +50,11 @@
 
     function loadUsers() {
         $.ajax({
-            url: "/Home/GetUser",
             type: "GET",
             success: function (response) {
                 alert(response);
             }
         });
-    }
 })
 //access select option
 
@@ -68,7 +66,6 @@
 //    var tbody = $("#userTable tbody");
 //    tbody.empty();
 
-//    $.each(users, function (i, user) {
 
 //        tbody.append(`
 //<tr>
@@ -81,7 +78,6 @@
 //</tr>
 //`);
 
-//        });
 
 
 
