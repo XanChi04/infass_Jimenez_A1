@@ -1,7 +1,9 @@
-using System.Diagnostics;
 using infass_Jimenez_A1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace infass_Jimenez_A1.Controllers
 {
@@ -14,8 +16,7 @@ namespace infass_Jimenez_A1.Controllers
             _logger = logger;
         }
 
-        //temp data paras user
-
+        //kay wala paman database, ari nalang sa nako i store ang created user object sa list
         private static List<User> registeredUser = new List<User>();
 
 
@@ -98,11 +99,20 @@ namespace infass_Jimenez_A1.Controllers
 
         public IActionResult GetUser()
         {
-            Crud crud = new Crud();
+            Crud crud = new Crud(); //gi tawag ra niya ang crud model
 
-            string sql = crud.SelectAll("User");
+            string query = crud.SelectAll("User"); //iya gi access ang method sulod sa crud model
+            //ang sa babaw kay para rana nga mo display ang query sa alert hahaha
 
-            return Content(sql);
+            var getUser = registeredUser.ToList(); //ari naka mag add sa user object nimo padung sa list para temporary sya mo store
+
+            return Json(new
+                {
+                    success = true,
+                    message = query, //iya i return ang query paras alert
+                    getUser //at the same time, iya sab i return ang user object nga naka store sa list
+                } //, JsonRequestBehavior.AllowGet
+            );
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

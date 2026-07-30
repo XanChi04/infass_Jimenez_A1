@@ -1,1 +1,95 @@
-﻿<button id="btnUser">User</button>
+﻿@model infass_Jimenez_A1.Models.User
+
+
+
+<div class="container" style="margin-top: 20px;">
+    <div class="panel panel-primary">
+        <div class="row panel-heading">
+            <p style="margin-top: 20px;">
+                <div class="text-end">
+                    @*<select id="select" class="form-select">
+                        <option selected>Select...</option>
+                        <option value="1">User</option>
+                    </select>*@
+                    <button id="btnShowUser" type="button" class="btn btn-dark">Show All User</button>
+                </div>
+            </p>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th> @Html.DisplayNameFor(model => model.Email)</th>
+                        <th> @Html.DisplayNameFor(model => model.Age)</th>
+                        <th> @Html.DisplayNameFor(model => model.Password)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tblBody"></tbody>
+            </table>
+
+            <div>
+                <button id="AddNew" type="button" class="btn btn-secondary">
+                    Add New
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
+    
+<Doctype html>
+    <html>
+        <head>
+
+        </head>
+        <body>
+            <select id="select" class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">User</option>
+            </select>
+
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th id="userId">User Id</th>
+                        <th id="email">Email</th>
+                        <th id="age">Age</th>
+                        <th id="password">Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </body>
+    </html>
+</Doctype>
+
+@section Scripts {
+         var tr = "<tr><td>No data</td></tr>";
+
+         $(function(){
+                  $(function addEmptyRow() {
+                if ($("#userTable tbody").children().children().length == 0) {
+                    $("#userTable tbody").append(tr);
+                }
+            });
+         }); 
+} *@
